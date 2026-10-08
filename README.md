@@ -102,10 +102,10 @@ The backend requires `JWT_SECRET` to be configured with at least 32 characters. 
 
 ### Frontend on Vercel
 
-The repository includes `vercel.json` for the client workspace and React Router history fallback.
+The client folder includes `vercel.json` for its Vite build output and React Router history fallback.
 
 1. Import `NiteshChaudhari-exe/jobfinder-nepal` into Vercel.
-2. Keep the project root directory set to the repository root.
+2. When Vercel detects multiple applications, import the `client` application as a standalone project. Keep its detected project root directory set to `client`.
 3. Add the environment variable `VITE_API_URL` with the deployed backend API URL ending in `/api` (for example, `https://your-api.example.com/api`).
 4. Deploy. Copy the final production domain exactly as shown by Vercel, including `https://` and excluding a trailing slash.
 
