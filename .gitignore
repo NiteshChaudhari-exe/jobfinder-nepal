@@ -1,0 +1,12 @@
+node_modules
+client/dist
+client/*.tsbuildinfo
+client/vite.config.js
+client/vite.config.d.ts
+server/.env
+client/.env
+.env
+.env.*
+!.env.example
+!client/.env.example
+!server/.env.example

@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: jobfinder-nepal-api
+    env: node
+    rootDir: server
+    plan: free
+    buildCommand: npm install
+    startCommand: node src/index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: JWT_SECRET
+        generateValue: true
+      - key: MONGO_URI
+        sync: false
+      - key: CORS_ORIGIN
+        sync: false
