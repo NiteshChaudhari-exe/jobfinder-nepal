@@ -100,7 +100,22 @@ The backend requires `JWT_SECRET` to be configured with at least 32 characters. 
 
 ## Deployment
 
-`render.yaml` describes the backend service. Configure `MONGO_URI` and `CORS_ORIGIN` as private deployment settings; the Render configuration generates `JWT_SECRET`. Set `CORS_ORIGIN` to the deployed frontend's exact origin. Configure the frontend's `VITE_API_URL` with the deployed API URL at frontend build time.
+### Frontend on Vercel
+
+The repository includes `vercel.json` for the client workspace and React Router history fallback.
+
+1. Import `NiteshChaudhari-exe/jobfinder-nepal` into Vercel.
+2. Keep the project root directory set to the repository root.
+3. Add the environment variable `VITE_API_URL` with the deployed backend API URL ending in `/api` (for example, `https://your-api.example.com/api`).
+4. Deploy. Copy the final production domain exactly as shown by Vercel, including `https://` and excluding a trailing slash.
+
+### Backend on Render
+
+`render.yaml` describes the backend service. Configure `MONGO_URI` as a private deployment setting using the rotated Atlas database credential; the Render configuration generates `JWT_SECRET`.
+
+After Vercel creates the production domain, set Render's `CORS_ORIGIN` to that exact origin, for example `https://your-project.vercel.app`. If you later use a custom domain, add its exact origin as a comma-separated entry. Do not use a wildcard in production. Redeploy the backend after changing environment variables.
+
+The frontend's `VITE_API_URL` is embedded at frontend build time; redeploy the frontend after changing it.
 
 Before a public production deployment, verify HTTPS, logging, backups, rate limiting, account provisioning, data retention, and dependency audit results. Production startup now requires both `MONGO_URI` and `CORS_ORIGIN`; CORS allows only configured origins.
 
